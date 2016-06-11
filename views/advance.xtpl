@@ -5,5 +5,44 @@
 {{/block}}
 
 {{#block ("body")}}
-advance
+<div class="advance-view">
+	<div class="content">
+		<form method="post" class="form-horizontal advance" enctype="multipart/form-data">
+			<div class="form-group">
+		        <label for="username" class="control-label col-sm-2">用户名:</label>
+		        <div class="col-sm-10">
+		          <input class="form-control col-sm-10 username" name="username">
+		        </div>
+		      </div>
+		      <div class="form-group">
+		        <label for="gender" class="control-label col-sm-2">性别:</label>
+		        <div class="col-sm-10">
+		          <label class="radio-inline">
+		            <input type="radio" name="gender" value="male" checked>
+		            男
+		          </label>
+		          <label class="radio-inline">
+		            <input type="radio" name="gender" value="female">
+		            女
+		          </label>
+		        </div>
+		      </div>
+		      <div class="img-preview">
+		      	<ul class="list">
+		      		<li class="item plus">
+		      			<div class="plus-icon">+</div>
+		      			<input type="file" class="file-upload" name="photo" multiple="multiple">
+		      		</li>
+		      	</ul>
+		      </div>
+		      <progress class="progress" max="100" value="0"></progress>
+		      <button class="formidable btn btn-primary submit-btn"> formidable</button>
+      		  <button class="busboy btn btn-primary submit-btn">busboy</button>
+		</form>
+	</div>
+</div>
+{{/block}}
+
+{{#block ("js")}}
+	<script src="/js/advance.js"></script>
 {{/block}}

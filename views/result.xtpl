@@ -6,12 +6,15 @@
 
 {{#block ("body")}}
 <div class="result-view">
-  <div class="content">
-    <div class="username text">用户名：{{username}}</div>
-    <div class="gender text">性别：{{gender}}</div>
+  <div class="result-content">
+  	<label class="title"> result</label>
+    <div class="username text">username：{{username}}</div>
+    <div class="gender text">gender：{{gender}}</div>
+    <div class="img-list">
     {{#each (imgs)}}
       <div class="img" style="background-image: url('{{this}}')"> </div>
     {{/each}}
+    </div>
   </div>
 </div>
 {{/block}}

@@ -1,13 +1,12 @@
  <form action="/" method="post" id="info" class="form-horizontal normal" enctype="multipart/form-data">
-      <input type="hidden" name="type" value="formidable" class="method-type">
       <div class="form-group">
-        <label for="username" class="control-label col-sm-2">用户名:</label>
+        <label for="username" class="control-label col-sm-2">username:</label>
         <div class="col-sm-10">
           <input class="form-control col-sm-10" name="username">
         </div>
       </div>
       <div class="form-group">
-        <label for="gender" class="control-label col-sm-2">性别:</label>
+        <label for="gender" class="control-label col-sm-2">gender:</label>
         <div class="col-sm-10">
           <label class="radio-inline">
             <input type="radio" name="gender" value="male" checked>
@@ -20,10 +19,10 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="photo" class="control-label col-sm-2">照片:</label>
+        <label for="photo" class="control-label col-sm-2">photo:</label>
         <div class="col-sm-10">
           <div class ="file-loader">
-            <button class="btn btn-primary col-sm-3">上传图片</button>
+            <button class="btn btn-primary col-sm-3">Upload Image</button>
             <div class="col-sm-9 path-wrapper">
               <input class="photo-path form-control" disabled>
             </div>

@@ -1,0 +1,21 @@
+{
+  "name": "file-upload-demo",
+  "description": "",
+  "main": "",
+  "authors": [
+    "orangeyyy <xiayangyyy@126.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/orangeyyy/file-upload-demo",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6",
+    "jquery": "^2.2.4"
+  }
+}

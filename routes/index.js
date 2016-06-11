@@ -5,6 +5,7 @@ var util = require('util');
 var path = require('path');
 var fs = require('fs');
 var BusBoy = require('busboy');
+var uuid = require('node-uuid');
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('simple');
@@ -30,20 +31,54 @@ router.get('/result', function (req, res, next) {
 });
 
 router.post('/formidable', function (req, res, next) {
+  formidableReq(req, res, function (resultData) {
+    res.render('result', resultData);
+  });
+});
+
+router.post('/formidableJson',  function (req, res, next) {
+  formidableReq(req, res, function (resultData) {
+    res.send(resultData);
+  });
+});
+
+router.post('/busboy', function (req, res, next) {
+  busboyReq(req, res, function (resultData) {
+    res.render('result', resultData);
+  });
+});
+
+router.post('/busboyJson', function (req, res, next) {
+  busboyReq(req, res, function (resultData) {
+    res.send(resultData);
+  });
+});
+function formidableReq (req, res, callback) {
   var form = new formidable.IncomingForm();
     form.uploadDir = path.resolve(__dirname, '../upload');
     form.keepExtensions = true;
     form.multiples = true;
     form.parse(req, function(err, fields, files) {
       var imgs = [];
-      files.photo.forEach(function (item) {
-         imgs.push('/' + path.basename(item.path));
-      });
-      res.render('result', {
+      if (files.photo) {
+        if (util.isArray(files.photo)) {
+          files.photo.forEach(function (item) {
+             imgs.push('/' + path.basename(item.path));
+          });
+        } else {
+          imgs.push('/' + path.basename(files.photo.path));
+        }
+      }
+
+      callback({
         username: fields.username,
         gender: fields.gender,
         imgs: imgs
       });
+    });
+    form.on('fileBegin', function(name, file) {
+      var uploadName = uuid.v1() + path.extname(file.name);
+      file.path = path.resolve(__dirname, '../upload/'+uploadName);
     });
     form.on('file', function (name, file) {
 
@@ -57,9 +92,9 @@ router.post('/formidable', function (req, res, next) {
     form.on('end', function () {
 
     });
-});
+}
 
-router.post('/busboy', function (req, res, next) {
+function busboyReq (req, res, callback) {
   var busboy = new BusBoy({
      headers: req.headers
    });
@@ -74,8 +109,9 @@ router.post('/busboy', function (req, res, next) {
       file.on('end', function() {
         console.log('File [' + fieldname + '] Finished');
       });
-      var saveTo = path.resolve(__dirname, '../upload/'+filename);
-      resultData.imgs.push('/' + filename);
+      var uploadName = uuid.v1() + path.extname(filename);
+      var saveTo = path.resolve(__dirname, '../upload/'+uploadName);
+      resultData.imgs.push('/' + uploadName);
       file.pipe(fs.createWriteStream(saveTo));
    });
     busboy.on('field', function(fieldname, val, fieldnameTruncated, valTruncated, encoding, mimetype) {
@@ -83,16 +119,10 @@ router.post('/busboy', function (req, res, next) {
       console.log('Field [' + fieldname + ']: value: ' + util.inspect(val));
     });
     busboy.on('finish', function() {
+      callback(resultData);
       res.render('result', resultData);
     });
     req.pipe(busboy);
-});
-function formidableReq (req, res) {
-
-}
-
-function busboyReq (req, res) {
-
 }
 
 module.exports = router;

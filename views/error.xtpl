@@ -1,5 +1,11 @@
-<!doctype html>
-<html>
-<head></head>
-<body>error</body>
-</html>
+{{extend ("./base")}}
+
+{{#block ("header")}}
+	{{include ("./header")}}
+{{/block}}
+
+{{#block ("body")}}
+<div class="error-view">
+	<img class="error" src="/img/error.jpeg">
+</div>
+{{/block}}
