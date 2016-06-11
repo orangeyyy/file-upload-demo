@@ -1,0 +1,14 @@
+{{extend ("./base")}}
+{{#block("header")}}
+  {{include ("./header", {menu: 'simple'})}}
+{{/block}}
+{{#block ("body")}}
+<div class="simple-view">
+  <div class="content">
+   {{include ("./form")}}
+  </div>
+</div>
+{{/block}}
+{{#block("js")}}
+  <script src="/js/simple.js"></script>
+{{/block}}

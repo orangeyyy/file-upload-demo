@@ -1,0 +1,17 @@
+{{extend ("./base")}}
+
+{{#block("header")}}
+  {{include ("./header")}}
+{{/block}}
+
+{{#block ("body")}}
+<div class="result-view">
+  <div class="content">
+    <div class="username text">用户名：{{username}}</div>
+    <div class="gender text">性别：{{gender}}</div>
+    {{#each (imgs)}}
+      <div class="img" style="background-image: url('{{this}}')"> </div>
+    {{/each}}
+  </div>
+</div>
+{{/block}}

@@ -1,0 +1,36 @@
+ <form action="/" method="post" id="info" class="form-horizontal normal" enctype="multipart/form-data">
+      <input type="hidden" name="type" value="formidable" class="method-type">
+      <div class="form-group">
+        <label for="username" class="control-label col-sm-2">用户名:</label>
+        <div class="col-sm-10">
+          <input class="form-control col-sm-10" name="username">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="gender" class="control-label col-sm-2">性别:</label>
+        <div class="col-sm-10">
+          <label class="radio-inline">
+            <input type="radio" name="gender" value="male" checked>
+            男
+          </label>
+          <label class="radio-inline">
+            <input type="radio" name="gender" value="female">
+            女
+          </label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="photo" class="control-label col-sm-2">照片:</label>
+        <div class="col-sm-10">
+          <div class ="file-loader">
+            <button class="btn btn-primary col-sm-3">上传图片</button>
+            <div class="col-sm-9 path-wrapper">
+              <input class="photo-path form-control" disabled>
+            </div>
+          </div>
+          <input type="file" name="photo" class="form-control file-upload" multiple="multiple">
+        </div>
+      </div>
+      <button class="formidable btn btn-primary submit-btn"> formidable</button>
+      <button class="busboy btn btn-primary submit-btn">busboy</button>
+    </form>

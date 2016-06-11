@@ -1,0 +1,9 @@
+{{extend ("./base")}}
+
+{{#block("header")}}
+  {{include ("./header", {menu: 'advance'})}}
+{{/block}}
+
+{{#block ("body")}}
+advance
+{{/block}}

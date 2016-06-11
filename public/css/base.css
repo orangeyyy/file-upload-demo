@@ -1,0 +1,78 @@
+.main-navbar .navbar-logo {
+  background: url('/img/logo.jpg') no-repeat 50% 50%;
+  background-size: auto 80%;
+  width: 50px;
+  height: 50px;
+  display: block;
+}
+.simple-view,
+.ajax-view {
+  width: 990px;
+  margin: 12px auto;
+  overflow: hidden;
+}
+.result-view {
+  width: 990px;
+  margin: 12px auto;
+  overflow: hidden;
+}
+.result-view .content {
+  width: 660px;
+  border: 1px dashed #ccc;
+  border-radius: 10px;
+  padding: 18px;
+  overflow: hidden;
+}
+.result-view .content .text {
+  font-size: 14px;
+  color: #000;
+  line-height: 20px;
+  margin-bottom: 9px;
+}
+.result-view .content .img {
+  width: 200px;
+  height: 200px;
+  margin-right: 9px;
+  margin-bottom: 9px;
+  float: left;
+  overflow: hidden;
+  box-sizing: border-box;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: 50% 50%;
+  border: 1px solid #999;
+  border-radius: 5px;
+}
+.result-view .content .img:nth-child(3n+2) {
+  margin-right: 0;
+}
+form.normal {
+  width: 500px;
+  padding: 18px;
+  border: 1px dashed #ccc;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+form.normal .file-upload {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 95px;
+  height: 34px;
+  opacity: 0;
+  -moz-opacity: 0;
+  /* 兼容老式浏览器 */
+  filter: alpha(opacity=0);
+  /* 兼容IE */
+}
+form.normal .file-loader {
+  overflow: hidden;
+}
+form.normal .file-loader .path-wrapper {
+  padding-right: 0;
+}
+form.normal .submit-btn {
+  float: right;
+  margin-left: 9px;
+}

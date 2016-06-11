@@ -1,0 +1,16 @@
+{{extend ("./base")}}
+
+{{#block("header")}}
+  {{include ("./header", {menu: 'ajax'})}}
+{{/block}}
+
+{{#block ("body")}}
+<div class="ajax-view">
+  <div class="content">
+    {{include ("./form")}}
+  </div>
+</div>
+{{/block}}
+{{#block("js")}}
+  <script src="/js/ajax.js"></script>
+{{/block}}
