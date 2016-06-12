@@ -2,21 +2,34 @@
 	var box = $('.advance-view');
 	var filesData = [];
 	function addFiles(files) {
-		for (let i = 0; i < files.length; ++i) {
-			filesData.push(files[i]);
+		var addItem = function (file) {
+			let index = filesData.push(file) - 1;
 			let fileReader = new FileReader();
 	  		fileReader.onload = function (e) {
-	  		let liNode = $('<li class="item"></li>');
+	  		let liNode = $('<li class="item" data-index='+ index +'><div class="del-btn"></div></li>');
 	  			liNode.css('background-image', 'url("'+e.target.result+'")');
 	  			$('ul', box).append(liNode);
 	  		}
-	  		fileReader.readAsDataURL(files[i]);
+	  		fileReader.readAsDataURL(file);
+		}
+		for (let i = 0; i < files.length; ++i) {
+			addItem(files[i]);	
 		}
 	}
 
 	$('.file-upload', box).on('change', function (ev) {
 		addFiles(this.files);
 	});
+
+	$('.img-preview').delegate('.del-btn', 'click', function (ev) {
+		var imgNode = $(ev.currentTarget).parent('li');
+		delete filesData[imgNode.attr('data-index')];
+		imgNode.remove();
+	});
+	
+
+
+
 	$('.submit-btn', box).on('click', function (ev) {
 		ev.preventDefault();
 	    var btnNode = $(this);
@@ -25,7 +38,9 @@
 	   	formData.append('username', $("input[name='username']").val())
 	   	formData.append('gender', $("input[name='gender']:checked").val());
 	   	for (let i = 0; i < filesData.length; ++i) {
-	   		formData.append('photo', filesData[i]);
+	   		if (filesData[i]) {
+		   		formData.append('photo', filesData[i]);
+		   	}
 	   	}
 	    var xhr = new XMLHttpRequest();
 
